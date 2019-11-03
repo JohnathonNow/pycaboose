@@ -42,23 +42,21 @@ class Database:
     def read(self, line):
         return self._mapping.get(line, (None, None, None))[2]
 
+    def _write_mapping(self, line, data):
+        self._mm.seek(0, 2)
+        tell = self._mm.tell()
+        self._mapping[line] = (tell,) + data
+        self._mm.resize(self._mm.size()+len(data[0]))
+        self._mm.write(data[0])
+
     def _write_obj(self, line):
         y = self._mapping[line]
-        self._mm.seek(0, 2)
-        tell = self._mm.tell()
-        self._mapping[line] = (tell, y[1], y[2])
-        self._mm.resize(self._mm.size()+len(y[1]))
-        self._mm.write(y[1])
+        self._write_mapping(line, (y[1], y[2]))
 
     def _write_new(self, line, value):
-        pair = (line, value)
-        x = base64.b64encode(pickle.dumps(pair))
+        x = base64.b64encode(pickle.dumps((line, value)))
         x = b'# ' + x + b'\n'
-        tell = self._mm.tell()
-        self._mapping[line] = (tell, x, value)
-        self._mm.seek(0, 2)
-        self._mm.resize(self._mm.size()+len(x))
-        self._mm.write(x)
+        self._write_mapping(line, (x, value))
 
     def write(self, line, value):
         if line in self._mapping:
