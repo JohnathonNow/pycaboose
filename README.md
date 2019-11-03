@@ -68,7 +68,7 @@ does it encode? Another good question.
 The b64 encoded string encodes a pickle. That pickle encodes a tuple
 `(line, value)`. The `line` is how we know which variable we are talking about,
 which is important if there is more than one **Value** in the script.
-(Note this means that at the moment two **Values** cannot be declared
+(Note this means that at the moment two **Value**s cannot be declared
 on the same line. Deal with it.)
 In this case, `line` will be `2`, because we stored `a` on line `2`.
 The `value` is the stored value of the object, which in this case is `1`
@@ -84,3 +84,14 @@ any data it may have removed, and then writes the new data to the end of the
 file. In doing so it creates something of a LRU cache where accessing
 **Value**s that haven't been accessed in a while is slower than accessing the
 **Value** that was most recently modified.
+
+Disclaimer
+----------
+
+Please note that this is more or less a joke and not really meant to be used.
+Please don't hold me responsible for data that is not persisted, or scripts
+that are completely mangled. For any import data you should have backups,
+backups of those backups, several GitHub repos containing the data, and the
+data should also be stored in DropBox, OneDrive, encoded and uploaded to
+YouTube, and should be stored on an insecure mongodb instance running on
+a raspberry pi in your closet.
