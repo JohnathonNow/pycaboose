@@ -4,7 +4,7 @@ import pickle
 import mmap
 import atexit
 
-CHECKSUM = b"# arthwritethis #\n"
+CHECKSUM = b"# pycaboose #\n"
 
 
 class Database:

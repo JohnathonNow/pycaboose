@@ -1,5 +1,5 @@
-ArthWriteThis
-=============
+PyCaboose
+=========
 
 
 
@@ -17,16 +17,16 @@ which is very bad. Another potential solution is to just have your script
 never terminate, thus it would have no need to persist data as it will retain
 it in memory. This is obviously stupid.
 
-Enter **arthwritethis**, a Python library for persisting data within the script file
+Enter **pycaboose**, a Python library for persisting data within the script file
 itself.
 
 Usage
 -----
 
-Using **arthwritethis** is very easy. Consider the following example:
+Using **pycaboose** is very easy. Consider the following example:
 
 ```python
-from arthwritethis import Value
+from pycaboose import Value
 a = Value(0)
 print(a.value)
 a.value += 1
@@ -42,24 +42,24 @@ How does it do this? Good question.
 Mechanism
 ---------
 
-The secret sauce to **arthwritethis** is its in-script database. When the **arthwritethis**
+The secret sauce to **pycaboose** is its in-script database. When the **arthwritethis**
 module is imported, it opens your script file and scans it for a special marker
-that it places there the first time it is imported. Then, any time an **arthwritethis**
+that it places there the first time it is imported. Then, any time an **pycaboose**
 **Value** is changed, it writes the new value to the script. So, using the
 above example, after running the script the first time, it will instead look
 like this:
 
 
 ```python
-from arthwritethis import Value
+from pycaboose import Value
 a = Value(0)
 print(a.value)
 a.value += 1
-# arthwritethis #
+# pycaboose #
 # gANLA0sBhnEALg==
 ```
 
-Breaking that down, it inserted a comment, `# arthwritethis #`, which indicates where
+Breaking that down, it inserted a comment, `# pycaboose #`, which indicates where
 it will be storing data. This must be at the end of the file. Next, there is
 another comment, but this time it is more involved. 
 There is a bunch of garbage. This garbage is a base64 encoded string. But what
@@ -75,10 +75,10 @@ The `value` is the stored value of the object, which in this case is `1`
 as that is the most recent value of the **Value**.
 
 Now if we were to run the script again, upon instantiating the **Value**,
-**arthwritethis** will know that it has stored a value for that **Value** and loads
+**pycaboose** will know that it has stored a value for that **Value** and loads
 that rather than using the value the user specified.
 
-For writes, **arthwritethis** truncates the file, removing the line that stored the
+For writes, **pycaboose** truncates the file, removing the line that stored the
 old value of the **Value** if it was previously stored. It then writes back
 any data it may have removed, and then writes the new data to the end of the
 file. In doing so it creates something of a LRU cache where accessing
