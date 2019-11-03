@@ -42,9 +42,9 @@ How does it do this? Good question.
 Mechanism
 ---------
 
-The secret sauce to **arthwritethis** is its in script database. When the **arthwritethis**
+The secret sauce to **arthwritethis** is its in-script database. When the **arthwritethis**
 module is imported, it opens your script file and scans it for a special marker
-that it places there the first time it is imported. Then, any time a **arthwritethis**
+that it places there the first time it is imported. Then, any time an **arthwritethis**
 **Value** is changed, it writes the new value to the script. So, using the
 above example, after running the script the first time, it will instead look
 like this:
