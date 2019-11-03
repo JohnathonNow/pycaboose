@@ -25,7 +25,7 @@ Usage
 
 Using **arthwritethis** is very easy. Consider the following example:
 
-```
+```python
 from arthwritethis import Value
 a = Value(0)
 print(a.value)
@@ -50,7 +50,7 @@ above example, after running the script the first time, it will instead look
 like this:
 
 
-```
+```python
 from arthwritethis import Value
 a = Value(0)
 print(a.value)
