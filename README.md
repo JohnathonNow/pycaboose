@@ -1,5 +1,10 @@
+ArthWriteThis
+=============
+
+
+
 Idea
-====
+----
 
 Existing persistent storage solutions suck because they decouple your code from
 the data that it needs to run. Under current solutions you must either use a
@@ -16,7 +21,7 @@ Enter **arthwritethis**, a Python library for persisting data within the script 
 itself.
 
 Usage
-=====
+-----
 
 Using **arthwritethis** is very easy. Consider the following example:
 
@@ -35,7 +40,7 @@ lookup for the most recent value, which is 1. So the `print` will instead print
 How does it do this? Good question.
 
 Mechanism
-=========
+---------
 
 The secret sauce to **arthwritethis** is its in script database. When the **arthwritethis**
 module is imported, it opens your script file and scans it for a special marker
