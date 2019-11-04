@@ -1,6 +1,7 @@
 PyCaboose
 =========
 
+[![PyPI version](https://badge.fury.io/py/pycaboose.svg)](https://badge.fury.io/py/pycaboose)
 
 
 Idea
