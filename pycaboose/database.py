@@ -7,11 +7,11 @@ FLAG = b'# pycaboose #\n'
 
 class Database:
     def __init__(self):
-        self.writer = TailWriter(sys.argv[0], FLAG)
+        self._writer = TailWriter(sys.argv[0], FLAG)
         self._db = {}
-        for tell, s in self.writer.read():
+        for pos, s in self._writer.read():
             key, value = marshal.decode(s)
-            self._db[key] = CacheLine(tell, value, s)
+            self._db[key] = CacheLine(pos, value, s)
 
     def read(self, line):
         cl = self._db.get(line)
@@ -19,17 +19,17 @@ class Database:
 
     def write(self, key, value):
         if key in self._db:
-            self.writer.shrink(self._db[key].tell)
+            self._writer.shrink(self._db[key].pos)
             for k in self._db:
-                if self._db[k].tell > self._db[key].tell:
-                    self._db[k].tell = self.writer.write(self._db[k].comment)
+                if self._db[k].pos > self._db[key].pos:
+                    self._db[k].pos = self._writer.write(self._db[k].comment)
         comment = marshal.encode((key, value))
-        tell = self.writer.write(comment)
-        self._db[key] = CacheLine(tell, value, comment)
+        pos = self._writer.write(comment)
+        self._db[key] = CacheLine(pos, value, comment)
 
 
 class CacheLine:
-    def __init__(self, tell, value, comment):
-        self.tell = tell
+    def __init__(self, pos, value, comment):
+        self.pos = pos
         self.value = value
         self.comment = comment
