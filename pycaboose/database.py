@@ -13,8 +13,8 @@ class Database:
             key, value = marshal.decode(s)
             self._db[key] = CacheLine(pos, value, s)
 
-    def read(self, line):
-        cl = self._db.get(line)
+    def read(self, key):
+        cl = self._db.get(key)
         return cl and cl.value
 
     def write(self, key, value):
