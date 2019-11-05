@@ -18,13 +18,13 @@ which is very bad. Another potential solution is to just have your script
 never terminate, thus it would have no need to persist data as it will retain
 it in memory. This is obviously stupid.
 
-Enter **pycaboose**, a Python library for persisting data within the script file
+Enter **PyCaboose**, a Python library for persisting data within the script file
 itself.
 
 Usage
 -----
 
-Using **pycaboose** is very easy. Consider the following example:
+Using **PyCaboose** is very easy. Consider the following example:
 
 ```python
 from pycaboose import Value
@@ -43,9 +43,9 @@ How does it do this? Good question.
 Mechanism
 ---------
 
-The secret sauce to **pycaboose** is its in-script database. When the **arthwritethis**
+The secret sauce to **PyCaboose** is its in-script database. When the **pycaboose**
 module is imported, it opens your script file and scans it for a special marker
-that it places there the first time it is imported. Then, any time an **pycaboose**
+that it places there the first time it is imported. Then, any time a **PyCaboose**
 **Value** is changed, it writes the new value to the script. So, using the
 above example, after running the script the first time, it will instead look
 like this:
@@ -76,10 +76,10 @@ The `value` is the stored value of the object, which in this case is `1`
 as that is the most recent value of the **Value**.
 
 Now if we were to run the script again, upon instantiating the **Value**,
-**pycaboose** will know that it has stored a value for that **Value** and loads
+**PyCaboose** will know that it has stored a value for that **Value** and loads
 that rather than using the value the user specified.
 
-For writes, **pycaboose** truncates the file, removing the line that stored the
+For writes, **PyCaboose** truncates the file, removing the line that stored the
 old value of the **Value** if it was previously stored. It then writes back
 any data it may have removed, and then writes the new data to the end of the
 file. In doing so it creates something of a LRU cache where accessing

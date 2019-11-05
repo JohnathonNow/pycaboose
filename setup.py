@@ -6,7 +6,7 @@ with open("README.md", "r") as fh:
 
 setuptools.setup(
     name='pycaboose',
-    version='1.0.1',
+    version='1.0.2',
     author='John Westhoff',
     author_email='johnjwesthoff@gmail.com',
     description=('A python library for persisting data within a script.'),
