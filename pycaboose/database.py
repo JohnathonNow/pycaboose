@@ -1,6 +1,6 @@
 import sys
-import pycaboose.marshal as marshal
-from .tailwriter import TailWriter
+from pycaboose import marshal
+from pycaboose.tailwriter import TailWriter
 
 FLAG = b'# pycaboose #\n'
 

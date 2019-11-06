@@ -1,11 +1,12 @@
 import inspect
 from .database import Database
-_db = Database()
+_db = None
 
 
 class Value:
     def __init__(self, value, key=None):
         global _db
+        _db = _db or Database()
         self._key = key or inspect.currentframe().f_back.f_lineno
         self._value = _db.read(self._key) or value
 
