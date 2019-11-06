@@ -1,6 +1,7 @@
 PyCaboose
 =========
 
+[![Build Status](https://github.com/johnathonnow/pycaboose/workflows/Build/badge.svg)](https://github.com/JohnathonNow/pycaboose/actions)
 [![PyPI version](https://badge.fury.io/py/pycaboose.svg)](https://badge.fury.io/py/pycaboose)
 
 
