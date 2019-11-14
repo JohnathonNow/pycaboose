@@ -1,14 +1,13 @@
 import inspect
 from .database import Database
-_db = None
 
 
 class Value:
+    _db = None
     def __init__(self, value, key=None):
-        global _db
-        _db = _db or Database()
+        self._db = self._db or Database()
         self._key = key or inspect.currentframe().f_back.f_lineno
-        self._value = _db.read(self._key) or value
+        self._value = self._db.read(self._key) or value
 
     @property
     def value(self):
@@ -16,6 +15,5 @@ class Value:
 
     @value.setter
     def value(self, value):
-        global _db
         self._value = value
-        _db.write(self._key, value)
+        self._db.write(self._key, value)
