@@ -2,7 +2,7 @@
 from pycaboose import Value
 
 a = Value(0)
-print(a.value)
-a.value += 1
+a += 1
+print(a())
 # pycaboose #
-# gANLBEsBhnEALg==
+# gANLBEsDhnEALg==
