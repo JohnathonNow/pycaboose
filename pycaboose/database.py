@@ -7,7 +7,6 @@ FLAG = b'# pycaboose #\n'
 
 class Database:
     def __init__(self):
-        print('BAD');
         self._writer = TailWriter(sys.argv[0], FLAG)
         self._db = {}
         for pos, s in self._writer.read():
