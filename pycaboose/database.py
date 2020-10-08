@@ -6,8 +6,9 @@ FLAG = b'# pycaboose #\n'
 
 
 class Database:
-    def __init__(self):
-        self._writer = TailWriter(sys.argv[0], FLAG)
+    def __init__(self, f=None):
+        f = f or sys.argv[0]
+        self._writer = TailWriter(f, FLAG)
         self._db = {}
         for pos, s in self._writer.read():
             key, value = marshal.decode(s)
