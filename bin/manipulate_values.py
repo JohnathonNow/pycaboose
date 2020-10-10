@@ -38,9 +38,9 @@ def main():
             return None
 
     def print_db(db):
-        print(f"\n{bcolors.WARNING}KEY{bcolors.ENDC}\t{bcolors.OKGREEN}|{bcolors.ENDC}\t{bcolors.WARNING}VALUE{bcolors.ENDC}\n{bcolors.OKGREEN}--------+------------{bcolors.ENDC}")
+        print("\n{w}KEY{e}\t{green}|{e}\t{w}VALUE{e}\n{green}--------+------------{e}".format(w=bcolors.WARNING,e=bcolors.ENDC,green=bcolors.OKGREEN,))
         for key, value in db._db.items():
-            print(f"{key}\t{bcolors.OKGREEN}|{bcolors.ENDC}\t{value.value} ")
+            print("{k}\t{g}|{e}\t{v} ".format(k=key,v=value.value,g=bcolors.OKGREEN,e=bcolors.ENDC))
 
     def add_to_db(db, input_data):  # input data::(line,data)
         db.write(input_data[0], input_data[1])
@@ -72,25 +72,25 @@ def main():
                 f.write(contents.rstrip() + "\n")
 
             del db._db[key]
-            print(f"{bcolors.WARNING}Deleted sucessfully!{bcolors.ENDC}")
+            print("{a}Deleted sucessfully!{b}".format(a=bcolors.WARNING,b=bcolors.ENDC))
 
-        except BaseException:
+        except BaseException as e:
+            print(e) 
             print("Element did't exist in database.")
 
     def print_help():
-        print(f"{bcolors.WARNING}{bcolors.BOLD}\t--- HELP ---{bcolors.ENDC} ")
-        print(f"{bcolors.FAIL}-l {bcolors.ENDC} --> list all Values in database ")
-        print(
-            f"{bcolors.FAIL}-a (line, data) {bcolors.ENDC} --> add a Value to the database ")
-        print(f"{bcolors.FAIL}-d (key) {bcolors.ENDC} --> delete value from database, key is the creation line")
-        print(f"{bcolors.FAIL}-h {bcolors.ENDC} --> show this help menu")
-        print(f"{bcolors.FAIL}-i (csv_file_path){bcolors.ENDC} --> import csv file")
-        print(f"{bcolors.FAIL}-q {bcolors.ENDC} --> quit this application")
+        print("{a}{b}\t--- HELP ---{c} ".format(a=bcolors.WARNING,b=bcolors.BOLD,c=bcolors.ENDC))
+        print("{a}-l {b} --> list all Values in database ".format(a=bcolors.FAIL,b=bcolors.ENDC))
+        print("{a}-a (line, data) {b} --> add a Value to the database ".format(a=bcolors.FAIL,b=bcolors.ENDC))
+        print("{a}-d (key) {b} --> delete value from database, key is the creation line".format(a=bcolors.FAIL,b=bcolors.ENDC))
+        print("{a}-h {b} --> show this help menu".format(a=bcolors.FAIL,b=bcolors.ENDC))
+        print("{a}-i (csv_file_path){b} --> import csv file".format(a=bcolors.FAIL,b=bcolors.ENDC))
+        print("{a}-q {b} --> quit this application".format(a=bcolors.FAIL,b=bcolors.ENDC))
 
     filename = "test_pycaboose.py"
     flag = "# pycaboose #"
 
-    print(f"\n\t{bcolors.OKGREEN}{bcolors.BOLD} EDIT PYCABOOSE{bcolors.ENDC}\n           -h for help   \n -------------------------------")
+    print("\n\t{a}{b} EDIT PYCABOOSE{c}\n           -h for help   \n -------------------------------".format(a=bcolors.OKGREEN,b=bcolors.BOLD,c=bcolors.ENDC))
     if len(sys.argv) == 1:
         filename = input("Enter filename to edit database on: ")
     else:
@@ -113,8 +113,7 @@ def main():
                 # print("inserting_data",inserting_data)
                 add_to_db(db, inserting_data)
             except BaseException:
-                print(
-                    f"Wrong syntax.\nDo {bcolors.FAIL}-h{bcolors.ENDC}--> for help ")
+                print("Wrong syntax.\nDo {a}-h{b}--> for help ".format(a=bcolors.FAIL,b=bcolors.ENDC))
         elif user_input[:2] == "-l":
             print_db(db)
         elif user_input[:2] == "-d":
